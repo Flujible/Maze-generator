@@ -98,6 +98,7 @@ const markFirstLast = (cells) => {
     noStroke();
     square(initialCell.xPos, initialCell.yPos, cellWidth);
     square(furthestCell.xPos, furthestCell.yPos, cellWidth);
+    // The squares sit over the wall lines, so redraw the walls
     initialCell.drawWalls();
     furthestCell.drawWalls();
 }
@@ -135,6 +136,7 @@ draw = () => {
         const chosenNeighbourCell = currentCell.chooseNeighbour(direction);
 
         currentCell.removeWall(direction);
+        // Modulus in JS does not handle negative numbers by wrapping around to positive
         chosenNeighbourCell.removeWall(((((direction - 2) % 4) + 4) % 4));
 
         chosenNeighbourCell.visited = true;
