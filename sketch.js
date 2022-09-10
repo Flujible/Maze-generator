@@ -9,17 +9,17 @@ let currentCell;
 let framerateInputEl;
 let framerateValEl;
 let startMazeGenEl;
-let gridXInputEl;
-let gridYInputEl;
+let gridSizeXEl;
+let gridSizeYEl;
 
 window.onload = () => {
     framerateInputEl = document.getElementById('framerateInput');
     startMazeGenEl = document.getElementById('startMazeGen');
     framerateValEl = document.getElementById('framerateVal');
-    gridXInputEl = document.getElementById('gridSizeX');
-    gridXInputValEl = document.getElementById('gridSizeXVal');
-    gridYInputEl = document.getElementById('gridSizeY');
-    gridYInputValEl = document.getElementById('gridSizeYVal');
+    gridSizeXEl = document.getElementById('gridSizeX');
+    gridSizeXValEl = document.getElementById('gridSizeXVal');
+    gridSizeYEl = document.getElementById('gridSizeY');
+    gridSizeYValEl = document.getElementById('gridSizeYVal');
     framerateInputEl.oninput = (e) => {
         e.preventDefault();
         const framerateVal = e.target.value;
@@ -29,20 +29,20 @@ window.onload = () => {
     startMazeGenEl.onclick = (e) => {
         e.preventDefault();
         startMazeGen();
-        gridXInputEl.disabled = true;
-        gridYInputEl.disabled = true;
+        gridSizeXEl.disabled = true;
+        gridSizeYEl.disabled = true;
     };
-    gridXInputEl.oninput = (e) => {
+    gridSizeXEl.oninput = (e) => {
         e.preventDefault();
         xVal = e.target.value;
         updateGridSize(xVal, true);
-        gridXInputValEl.innerHTML = `${xVal}`;
+        gridSizeXValEl.innerHTML = `${xVal}`;
     }
-    gridYInputEl.oninput = (e) => {
+    gridSizeYEl.oninput = (e) => {
         e.preventDefault();
         yVal = e.target.value;
         updateGridSize(e.target.value, false);
-        gridYInputValEl.innerHTML = `${yVal}`;
+        gridSizeYValEl.innerHTML = `${yVal}`;
     }
 
 }
@@ -113,11 +113,11 @@ draw = () => {
     if (stack.length === 0) {
         console.log("Finished");
         noLoop();
-        if (gridXInputEl) {
-            gridXInputEl.disabled = false;
+        if (gridSizeXEl) {
+            gridSizeXEl.disabled = false;
         }
-        if (gridYInputEl) {
-            gridYInputEl.disabled = false;
+        if (gridSizeYEl) {
+            gridSizeYEl.disabled = false;
         }
         markFirstLast(cells);
         return;
