@@ -1,0 +1,12 @@
+canvas {
+    border: 1px solid;
+}
+
+fieldset {
+    width: 200px;
+}
+
+fieldset label {
+    display: block;
+    width: 100px;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <script src="sketch.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="mazeSetup">
+        <fieldset>
+            <legend>Grid Size</legend>
+            <label for="gridSizeY">Columns (<span id="gridSizeYVal">20</span>)</label>
+            <input id="gridSizeY" type="range" min="5" max="30" value="20">
+            <label for="gridSizeX">Rows (<span id="gridSizeXVal">20</span>)</label>
+            <input id="gridSizeX" type="range" min="5" max="30" value="20">
+        </fieldset>
+        <fieldset>
+            <legend>Maze generation speed</legend>
+            <label for="framerateInput">Framerate (<span id="framerateVal">24</span>)</label>
+            <input type="range" min="0" max="60" step="1" value="24" id="framerateInput">
+        </fieldset>
+    </form>
+    <button form="mazeSetup" id="startMazeGen">Go</button>
+</body>
+</html>
