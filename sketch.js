@@ -159,31 +159,38 @@ const createGrid = () => {
 }
 
 const validateDirection = (direction, cellXIndex, cellYIndex) => {
-    if (direction === 0 && cellYIndex === 0) {
-        return false;
+    // 0 = up, 1 = right, 2 = down, 3 = left
+    if (direction === 0) {
+        if (cellYIndex === 0) {
+            return false;
+        }
+        if (cells[cellXIndex][cellYIndex - 1].visited) {
+            return false;
+        }
     }
-    if (direction === 1 && cellXIndex === numCols - 1) {
-        return false;
+    if (direction === 1) {
+        if (cellXIndex === numCols - 1) {
+            return false;
+        }
+        if (cells[cellXIndex + 1][cellYIndex].visited) {
+            return false;
+        }
     }
-    if (direction === 2 && cellYIndex === numRows - 1) {
-        return false;
+    if (direction === 2) {
+        if (cellYIndex === numRows - 1) {
+            return false;
+        }
+        if (cells[cellXIndex][cellYIndex + 1].visited) {
+            return false;
+        }
     }
-    if (direction === 3 && cellXIndex === 0) {
-        return false;
-    }
-
-    if (direction === 0 && cells[cellXIndex][cellYIndex - 1].visited) {
-        return false;
-    }
-    if (direction === 1 && cells[cellXIndex + 1][cellYIndex].visited) {
-
-        return false;
-    }
-    if (direction === 2 && cells[cellXIndex][cellYIndex + 1].visited) {
-        return false;
-    }
-    if (direction === 3 && cells[cellXIndex - 1][cellYIndex].visited) {
-        return false;
+    if (direction === 3) {
+        if (cellXIndex === 0) {
+            return false;
+        }
+        if (cells[cellXIndex - 1][cellYIndex].visited) {
+            return false;
+        }
     }
     return true;
 }
