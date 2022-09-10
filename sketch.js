@@ -70,7 +70,7 @@ const drawAllCells = () => {
 }
 
 const updateFramerate = (val) => {
-    frameRate(Number(val))
+    frameRate(Number(val));
 }
 
 const startMazeGen = () => {
