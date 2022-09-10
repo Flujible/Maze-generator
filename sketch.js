@@ -49,9 +49,9 @@ window.onload = () => {
 
 const updateGridSize = (value, xAxis) => {
     if (xAxis) {
-        canvasWidth = cellWidth * value;
-    } else {
         canvasHeight = cellHeight * value;
+    } else {
+        canvasWidth = cellWidth * value;
     }
     resizeCanvas(canvasWidth, canvasHeight);
     numRows = canvasHeight / cellHeight;
