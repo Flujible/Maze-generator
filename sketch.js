@@ -123,9 +123,6 @@ draw = () => {
         return;
     }
     currentCell = stack.pop();
-    noStroke();
-    fill(200, 0, 0);
-    square(currentCell.x, currentCell.y, cellWidth);
     currentCell.evaluateNeighbours();
     if (currentCell.hasViableNeighbours()) {
         stack.push(currentCell);
