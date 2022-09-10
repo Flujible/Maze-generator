@@ -1,6 +1,6 @@
 const cellWidth = cellHeight = 30;
-const cells = [];
 const stack = [];
+let cells = [];
 let canvasWidth = cellWidth * 20
 let canvasHeight = cellHeight * 20;
 let numRows = canvasHeight / cellHeight;
@@ -56,6 +56,7 @@ const updateGridSize = (value, xAxis) => {
     resizeCanvas(canvasWidth, canvasHeight);
     numRows = canvasHeight / cellHeight;
     numCols = canvasWidth / cellWidth;
+    cells = [];
     createGrid();
     drawAllCells();
 }
@@ -78,10 +79,28 @@ const startMazeGen = () => {
     const initialCell = cells[0][0];
     initialCell.visited = true;
     stack.push(initialCell);
+    initialCell.stackIndex = stack.length;
     frameRate(framerateInputEl.value);
     loop();
 }
 
+const markFirstLast = (cells) => {
+    let initialCell = cells[0][0];
+    let furthestCell = cells[0][0];
+    cells.forEach(outerArray => {
+        outerArray.forEach(cell => {
+            if (cell.stackIndex > furthestCell.stackIndex) {
+                furthestCell = cell;
+            }
+        });
+    });
+    fill('red');
+    noStroke();
+    square(initialCell.xPos, initialCell.yPos, cellWidth);
+    square(furthestCell.xPos, furthestCell.yPos, cellWidth);
+    initialCell.drawWalls();
+    furthestCell.drawWalls();
+}
 
 setup = () => {
     createCanvas(canvasWidth, canvasHeight);
@@ -100,6 +119,7 @@ draw = () => {
         if (gridYInputEl) {
             gridYInputEl.disabled = false;
         }
+        markFirstLast(cells);
         return;
     }
     currentCell = stack.pop();
@@ -109,6 +129,7 @@ draw = () => {
     currentCell.evaluateNeighbours();
     if (currentCell.hasViableNeighbours()) {
         stack.push(currentCell);
+        currentCell.stackIndex = stack.length;
 
         let direction = generateRandomDirection();
         while (!validateDirection(direction, currentCell.xIndex, currentCell.yIndex)) {
@@ -121,6 +142,7 @@ draw = () => {
 
         chosenNeighbourCell.visited = true;
         stack.push(chosenNeighbourCell);
+        chosenNeighbourCell.stackIndex = stack.length;
     }
     clear();
     drawAllCells();
@@ -188,6 +210,7 @@ class Cell {
     yIndex;
     xPos;
     yPos;
+    stackIndex;
 
     constructor(xIndex, yIndex) {
         this.xIndex = xIndex;
