@@ -80,7 +80,7 @@ const startMazeGen = () => {
     initialCell.visited = true;
     stack.push(initialCell);
     initialCell.stackIndex = stack.length;
-    frameRate(framerateInputEl.value);
+    frameRate(Number(framerateInputEl.value));
     loop();
 }
 
