@@ -144,6 +144,10 @@ draw = () => {
         chosenNeighbourCell.stackIndex = stack.length;
     }
     clear();
+    fill('purple')
+    if (stack.length > 0) {
+        square(stack[stack.length - 1].xPos, stack[stack.length - 1].yPos, cellWidth);
+    }
     drawAllCells();
 }
 
